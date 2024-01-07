@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://d16mfgwqaknp1"]
+
+[ext_resource type="Script" path="res://enemies/enemy drops/food_drop.gd" id="1_dcp5w"]
+[ext_resource type="Texture2D" uid="uid://cx558qn2b1dwm" path="res://assets/kenney_prototype_textures/light/texture_01.png" id="2_mvjoc"]
+[ext_resource type="Texture2D" uid="uid://d0mhw0a4mh3lw" path="res://assets/kenney_prototype_textures/orange/texture_02.png" id="3_86d65"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4f5si"]
+albedo_texture = ExtResource("2_mvjoc")
+
+[sub_resource type="BoxMesh" id="BoxMesh_whw6e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kvyqx"]
+albedo_texture = ExtResource("3_86d65")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_50vgx"]
+size = Vector3(1, 1, 1.00336)
+
+[node name="egg_drop" type="RigidBody3D"]
+collision_layer = 2
+script = ExtResource("1_dcp5w")
+food_type = "egg"
+
+[node name="main_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_4f5si")
+mesh = SubResource("BoxMesh_whw6e")
+
+[node name="main_mesh2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.181, 0, 0, 0, 0.1, -0.225221, 0.114852, 0.200453)
+material_override = SubResource("StandardMaterial3D_kvyqx")
+mesh = SubResource("BoxMesh_whw6e")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.00052762, 0.00167263, 0.000359342)
+shape = SubResource("BoxShape3D_50vgx")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 0.7, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_50vgx")
+
+[node name="main_mesh3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 0.181, 0, 0, 0, 0.1, -0.225284, -0.00397559, -0.201529)
+material_override = SubResource("StandardMaterial3D_kvyqx")
+mesh = SubResource("BoxMesh_whw6e")
+
+[node name="main_mesh4" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.09229e-09, -0.211568, 0.0433548, -0.05, -9.66022e-09, 0, 6.31699e-10, -0.0638761, -0.143598, 0.114572, 0.225237, 0.135799)
+material_override = SubResource("StandardMaterial3D_kvyqx")
+mesh = SubResource("BoxMesh_whw6e")
+
+[node name="main_mesh5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.065, 0, 0, 0, 0.209108, -0.0593198, 0, 0.107232, 0.115677, 0.21888, 0.107529, -0.121355)
+material_override = SubResource("StandardMaterial3D_kvyqx")
+mesh = SubResource("BoxMesh_whw6e")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

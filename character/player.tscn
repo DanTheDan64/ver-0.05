@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=3 uid="uid://dgg06vifjtsnr"]
+
+[ext_resource type="Script" path="res://character/CharacterBody3D.gd" id="1_5tx6x"]
+[ext_resource type="Script" path="res://character/Camera3D.gd" id="2_01ns8"]
+[ext_resource type="Script" path="res://character/main_control.gd" id="3_3itdr"]
+[ext_resource type="Texture2D" uid="uid://cxy5a1fi6jcjo" path="res://assets/icon.svg" id="3_efokr"]
+[ext_resource type="Script" path="res://character/UI.gd" id="4_xwb3d"]
+[ext_resource type="Script" path="res://character/full_food_display_Label.gd" id="6_x8hq2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_y8eel"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5mmpf"]
+
+[node name="player" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+script = ExtResource("1_5tx6x")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_y8eel")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.4, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_5mmpf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.809772, 0)
+script = ExtResource("2_01ns8")
+
+[node name="gun" type="Marker3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.395)
+
+[node name="main_control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_3itdr")
+
+[node name="ui" type="Control" parent="main_control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="main_control/ui"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 210.0
+offset_bottom = 130.0
+script = ExtResource("4_xwb3d")
+
+[node name="food_display_1" type="Label" parent="main_control/ui/Panel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="food_display_2" type="Label" parent="main_control/ui/Panel"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 80.0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="food_display_3" type="Label" parent="main_control/ui/Panel"]
+layout_mode = 0
+offset_top = 80.0
+offset_right = 200.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Icon" type="Sprite2D" parent="main_control/ui/Panel"]
+position = Vector2(601, 314)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_efokr")
+
+[node name="full_food_display" type="Control" parent="main_control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="main_control/full_food_display"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 1102.0
+offset_bottom = 598.0
+script = ExtResource("6_x8hq2")
+
+[node name="full_food_display_Label" type="Label" parent="main_control/full_food_display/Panel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 1047.0
+offset_bottom = 543.0
+theme_override_font_sizes/font_size = 30
+text = "fghf"

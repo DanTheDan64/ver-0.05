@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://tg5hlkd80nqg"]
+
+[ext_resource type="Script" path="res://enemies/mark.gd" id="1_58xwe"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_4yhnk"]
+
+[node name="marker" type="Marker3D"]
+gizmo_extents = 1.0
+script = ExtResource("1_58xwe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_4yhnk")

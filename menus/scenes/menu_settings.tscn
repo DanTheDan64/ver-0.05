@@ -1,0 +1,484 @@
+[gd_scene load_steps=14 format=3 uid="uid://bwf0swle515h1"]
+
+[ext_resource type="Script" path="res://menus/scenes/menu_settings.gd" id="1_7356o"]
+[ext_resource type="Script" path="res://PathFollow2D.gd" id="3_l3dtn"]
+[ext_resource type="PackedScene" uid="uid://bui456a5evhs7" path="res://menus/ui/button.tscn" id="4_4cnxa"]
+[ext_resource type="PackedScene" uid="uid://bbd5b3v7hytn0" path="res://enemies/target.tscn" id="5_6mowc"]
+[ext_resource type="ArrayMesh" uid="uid://dfvmujyciqrm3" path="res://game_tomato.obj" id="6_5jaur"]
+[ext_resource type="ArrayMesh" uid="uid://d4fejr5hi3ryn" path="res://game_bread.obj" id="7_jn6ik"]
+
+[sub_resource type="Curve2D" id="Curve2D_auplt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -220, 0, 0, 0, 0, 0, -200, 0, 0, 0, 0, 0, -220)
+}
+point_count = 3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yluua"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6w8ko"]
+size = Vector2(10, 10)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_053io"]
+
+[sub_resource type="Sky" id="Sky_85ocp"]
+sky_material = SubResource("PhysicalSkyMaterial_053io")
+
+[sub_resource type="Environment" id="Environment_pxci2"]
+background_mode = 2
+sky = SubResource("Sky_85ocp")
+sdfgi_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_fxtay"]
+
+[node name="menu_settings" type="Node2D"]
+position = Vector2(584, 424)
+script = ExtResource("1_7356o")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, -100)
+curve = SubResource("Curve2D_auplt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -220)
+progress = 83.95
+rotates = false
+script = ExtResource("3_l3dtn")
+
+[node name="Panel" type="Panel" parent="Path2D/PathFollow2D"]
+offset_left = -250.0
+offset_top = -75.0
+offset_right = 250.0
+offset_bottom = 75.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Path2D/PathFollow2D/Panel"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 50
+text = "settings Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="general" type="Panel" parent="."]
+offset_left = -500.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = 200.0
+metadata/_edit_use_anchors_ = true
+
+[node name="fov_panel" type="Panel" parent="general"]
+layout_mode = 0
+offset_left = 698.0
+offset_top = 100.0
+offset_right = 898.0
+offset_bottom = 200.0
+
+[node name="fov_label" type="Label" parent="general/fov_panel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 60.0
+text = "sensitivity: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fov_slider" type="HSlider" parent="general/fov_panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 180.0
+offset_bottom = 100.0
+min_value = 60.0
+max_value = 110.0
+value = 60.0
+rounded = true
+
+[node name="sensitivity_panel" type="Panel" parent="general"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 200.0
+
+[node name="sensitivity_label" type="Label" parent="general/sensitivity_panel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 60.0
+text = "sensitivity: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sensitivity_slider" type="HSlider" parent="general/sensitivity_panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 180.0
+offset_bottom = 100.0
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+rounded = true
+
+[node name="back" parent="general" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 100.0
+offset_right = 330.0
+offset_bottom = 200.0
+text = "back"
+
+[node name="controls" type="Panel" parent="."]
+visible = false
+offset_left = -500.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = 200.0
+metadata/_edit_use_anchors_ = true
+
+[node name="advanced" parent="controls" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 100.0
+offset_right = 330.0
+offset_bottom = 200.0
+text = "super advanced stuff
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="sensitivity" parent="controls" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 200.0
+text = "sensitivity"
+
+[node name="FOV" parent="controls" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 698.0
+offset_top = 99.0
+offset_right = 898.0
+offset_bottom = 199.0
+text = "FOV"
+
+[node name="accesibility" type="Panel" parent="."]
+visible = false
+offset_left = -500.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = 200.0
+metadata/_edit_use_anchors_ = true
+
+[node name="advanced" parent="accesibility" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 100.0
+offset_right = 330.0
+offset_bottom = 200.0
+text = "super advanced stuff
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="sensitivity" parent="accesibility" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 200.0
+text = "sensitivity"
+
+[node name="FOV" parent="accesibility" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 698.0
+offset_top = 99.0
+offset_right = 898.0
+offset_bottom = 199.0
+text = "FOV"
+
+[node name="audio" type="Panel" parent="."]
+visible = false
+offset_left = -500.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = 200.0
+metadata/_edit_use_anchors_ = true
+
+[node name="music" type="Panel" parent="audio"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 200.0
+offset_right = 330.0
+offset_bottom = 300.0
+
+[node name="music_label" type="Label" parent="audio/music"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 60.0
+text = "music: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="music_slider" type="HSlider" parent="audio/music"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 180.0
+offset_bottom = 100.0
+max_value = 150.0
+value = 100.0
+rounded = true
+
+[node name="sound_effects" type="Panel" parent="audio"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 600.0
+offset_bottom = 300.0
+
+[node name="sound_effects_label" type="Label" parent="audio/sound_effects"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 59.9993
+text = "sound effects: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="sound_effects_slider" type="HSlider" parent="audio/sound_effects"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 180.0
+offset_bottom = 89.9998
+max_value = 150.0
+value = 100.0
+rounded = true
+
+[node name="ambient" type="Panel" parent="audio"]
+layout_mode = 0
+offset_left = 698.0
+offset_top = 200.0
+offset_right = 898.0
+offset_bottom = 300.0
+
+[node name="ambient_label" type="Label" parent="audio/ambient"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 60.0
+text = "ambient: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ambient_slider" type="HSlider" parent="audio/ambient"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 180.0
+offset_bottom = 100.0
+max_value = 150.0
+value = 100.0
+rounded = true
+
+[node name="master_volume" type="Panel" parent="audio"]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 50.0
+offset_right = 465.0
+offset_bottom = 150.0
+
+[node name="music_label" type="Label" parent="audio/master_volume"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 60.0
+text = "master volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="music_slider" type="HSlider" parent="audio/master_volume"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 180.0
+offset_bottom = 100.0
+max_value = 150.0
+value = 100.0
+rounded = true
+
+[node name="reset audio" parent="audio" instance=ExtResource("4_4cnxa")]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 50.0
+offset_right = 736.0
+offset_bottom = 150.0
+text = "reset audio
+"
+
+[node name="Panel2" type="Panel" parent="audio"]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 6.0
+offset_right = 651.0
+offset_bottom = 44.0
+
+[node name="Label" type="Label" parent="audio/Panel2"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 38.0
+text = "no audio in game yet"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="video" type="Panel" parent="."]
+visible = false
+offset_left = -500.0
+offset_top = -150.0
+offset_right = 500.0
+offset_bottom = 200.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel2" type="Panel" parent="video"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 22.0
+offset_right = 400.0
+offset_bottom = 82.0
+
+[node name="Panel3" type="Panel" parent="video/Panel2"]
+layout_mode = 0
+offset_top = 65.0
+offset_right = 300.0
+offset_bottom = 307.0
+
+[node name="Label" type="Label" parent="video/Panel2"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+text = "resolution
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Panel3" type="Panel" parent="video"]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 22.0
+offset_right = 900.0
+offset_bottom = 82.0
+
+[node name="Panel3" type="Panel" parent="video/Panel3"]
+layout_mode = 0
+offset_top = 65.0
+offset_right = 300.0
+offset_bottom = 307.0
+
+[node name="Label" type="Label" parent="video/Panel3"]
+layout_mode = 0
+offset_right = 300.0
+offset_bottom = 60.0
+text = "max fps"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="section_video" parent="." instance=ExtResource("4_4cnxa")]
+offset_left = 300.0
+offset_top = -211.0
+offset_right = 500.0
+offset_bottom = -151.0
+text = "video
+"
+script = null
+
+[node name="section_general" parent="." instance=ExtResource("4_4cnxa")]
+offset_left = -500.0
+offset_top = -211.0
+offset_right = -300.0
+offset_bottom = -151.0
+text = "general
+"
+script = null
+
+[node name="section_controls" parent="." instance=ExtResource("4_4cnxa")]
+offset_left = -300.0
+offset_top = -211.0
+offset_right = -100.0
+offset_bottom = -151.0
+text = "controls"
+script = null
+
+[node name="section_accesibility" parent="." instance=ExtResource("4_4cnxa")]
+offset_top = -211.0
+offset_bottom = -151.0
+text = "accesibility
+"
+script = null
+
+[node name="section_audio" parent="." instance=ExtResource("4_4cnxa")]
+offset_left = 100.0
+offset_top = -211.0
+offset_right = 300.0
+offset_bottom = -151.0
+text = "audio"
+script = null
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.938391, -0.323158, 0.122442, 0.320442, 0.946345, 0.0418115, -0.129384, 0, 0.991595, 2.84513, 2.08859, 0.0330122)
+mesh = SubResource("CapsuleMesh_yluua")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("PlaneMesh_6w8ko")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(-0.118626, -0.58992, 0.798701, 0.335685, 0.733192, 0.591392, -0.934475, 0.338267, 0.111052, 6.58494, 7.70247, 1.36871)
+shadow_enabled = true
+shadow_transmittance_bias = 16.0
+shadow_opacity = 0.5
+shadow_blur = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node3D"]
+environment = SubResource("Environment_pxci2")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(0.767165, 0.196088, -0.610743, 0, 0.952129, 0.305695, 0.64145, -0.234519, 0.73044, -3.11739, 2.6961, 4.11261)
+
+[node name="target" parent="Node3D" instance=ExtResource("5_6mowc")]
+transform = Transform3D(-0.266481, 0, -0.96384, 0, 1, 0, 0.96384, 0, -0.266481, 1.71856, -0.648788, -2.84906)
+
+[node name="GameTomato" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.315933, 0, 0.613422, 0, 0.69, 0, -0.613422, 0, -0.315933, 1.17698, 0.770547, 2.75063)
+mesh = ExtResource("6_5jaur")
+skeleton = NodePath("../..")
+
+[node name="GameTomato2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.322723, 0, -0.609877, 0, 0.69, 0, 0.609877, 0, -0.322723, -0.751251, 0.0537963, -1.49534)
+mesh = ExtResource("6_5jaur")
+skeleton = NodePath("../..")
+
+[node name="GameBread" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.0295651, 0, -0.423971, 0, 0.425, 0, 0.423971, 0, -0.0295651, -2.9414, 0.240292, -0.269871)
+mesh = ExtResource("7_jn6ik")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D" groups=["bullets"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.0704969, 1.7837, 0)
+mesh = SubResource("SphereMesh_fxtay")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D" groups=["bullets"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -1.84361, 1.12853, 0.317706)
+mesh = SubResource("SphereMesh_fxtay")
+skeleton = NodePath("../..")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="pressed" from="general/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="audio/reset audio" to="." method="_on_reset_audio_pressed"]
+[connection signal="pressed" from="section_video" to="." method="_on_section_video_pressed"]
+[connection signal="pressed" from="section_general" to="." method="_on_section_general_pressed"]
+[connection signal="pressed" from="section_controls" to="." method="_on_section_controls_pressed"]
+[connection signal="pressed" from="section_accesibility" to="." method="_on_section_accesibility_pressed"]
+[connection signal="pressed" from="section_audio" to="." method="_on_section_audio_pressed"]

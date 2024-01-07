@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccv73map8q3k8"]
+
+[ext_resource type="Script" path="res://enemies/foods/code/passive_food.gd" id="1_t70fa"]
+[ext_resource type="PackedScene" uid="uid://bg1xrnlxqupl8" path="res://enemies/enemy drops/tomato_drop.tscn" id="2_t08eb"]
+[ext_resource type="ArrayMesh" uid="uid://dfvmujyciqrm3" path="res://game_tomato.obj" id="3_s56us"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wcus"]
+size = Vector3(1.12598, 1.15649, 1.24121)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_couqs"]
+size = Vector3(1.2998, 1.00732, 1.20703)
+
+[node name="tomato" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_t70fa")
+node = ExtResource("2_t08eb")
+lowest_speed = 0.8
+highest_speed = 1.5
+highest_max_distance_to_pack = 8.0
+lowest_panic_amount = 1.5
+highest_panic_amount = 2.6
+hp = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0782471, 0)
+shape = SubResource("BoxShape3D_4wcus")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.3, 0, 0, 0, 1.1, 0, -0.00476074, 0)
+shape = SubResource("BoxShape3D_couqs")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="agro_timer" type="Timer" parent="."]
+
+[node name="GameTomato" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.69, 0, 0, 0, 0.69, 0, 0, 0, 0.69, 0, -0.678859, 0)
+mesh = ExtResource("3_s56us")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="agro_timer" to="." method="_on_agro_timer_timeout"]

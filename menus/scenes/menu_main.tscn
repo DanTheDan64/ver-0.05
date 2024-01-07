@@ -1,0 +1,130 @@
+[gd_scene load_steps=14 format=3 uid="uid://bjqdnbcunq5d2"]
+
+[ext_resource type="Script" path="res://menus/scenes/menu_main.gd" id="1_1w6yn"]
+[ext_resource type="Script" path="res://PathFollow2D.gd" id="3_dx3yc"]
+[ext_resource type="PackedScene" uid="uid://bui456a5evhs7" path="res://menus/ui/button.tscn" id="4_vs7fx"]
+[ext_resource type="PackedScene" uid="uid://bbd5b3v7hytn0" path="res://enemies/target.tscn" id="5_2vova"]
+[ext_resource type="ArrayMesh" uid="uid://dfvmujyciqrm3" path="res://game_tomato.obj" id="6_t2d48"]
+[ext_resource type="ArrayMesh" uid="uid://d4fejr5hi3ryn" path="res://game_bread.obj" id="7_dy0im"]
+
+[sub_resource type="Curve2D" id="Curve2D_auplt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -220, 0, 0, 0, 0, 0, -200, 0, 0, 0, 0, 0, -220)
+}
+point_count = 3
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yluua"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6w8ko"]
+size = Vector2(10, 10)
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_053io"]
+
+[sub_resource type="Sky" id="Sky_85ocp"]
+sky_material = SubResource("PhysicalSkyMaterial_053io")
+
+[sub_resource type="Environment" id="Environment_pxci2"]
+background_mode = 2
+sky = SubResource("Sky_85ocp")
+sdfgi_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_fxtay"]
+
+[node name="menu_main" type="Node2D"]
+position = Vector2(584, 424)
+script = ExtResource("1_1w6yn")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, -100)
+curve = SubResource("Curve2D_auplt")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(0, -220)
+progress = 83.95
+rotates = false
+script = ExtResource("3_dx3yc")
+
+[node name="Panel" type="Panel" parent="Path2D/PathFollow2D"]
+offset_left = -250.0
+offset_top = -75.0
+offset_right = 250.0
+offset_bottom = 75.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Path2D/PathFollow2D/Panel"]
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 50
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="start" parent="." instance=ExtResource("4_vs7fx")]
+offset_top = -200.0
+offset_bottom = -100.0
+text = "start"
+metadata/_edit_use_anchors_ = true
+
+[node name="settings" parent="." instance=ExtResource("4_vs7fx")]
+text = "settings"
+
+[node name="back" parent="." instance=ExtResource("4_vs7fx")]
+offset_top = 100.0
+offset_bottom = 200.0
+text = "back"
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0.938391, -0.323158, 0.122442, 0.320442, 0.946345, 0.0418115, -0.129384, 0, 0.991595, 2.84513, 2.08859, 0.0330122)
+mesh = SubResource("CapsuleMesh_yluua")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("PlaneMesh_6w8ko")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+transform = Transform3D(-0.118626, -0.58992, 0.798701, 0.335685, 0.733192, 0.591392, -0.934475, 0.338267, 0.111052, 6.58494, 7.70247, 1.36871)
+shadow_enabled = true
+shadow_transmittance_bias = 16.0
+shadow_opacity = 0.5
+shadow_blur = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Node3D"]
+environment = SubResource("Environment_pxci2")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(0.767165, 0.196088, -0.610743, 0, 0.952129, 0.305695, 0.64145, -0.234519, 0.73044, -3.11739, 2.6961, 4.11261)
+
+[node name="target" parent="Node3D" instance=ExtResource("5_2vova")]
+transform = Transform3D(-0.266481, 0, -0.96384, 0, 1, 0, 0.96384, 0, -0.266481, 1.71856, -0.648788, -2.84906)
+
+[node name="GameTomato" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.315933, 0, 0.613422, 0, 0.69, 0, -0.613422, 0, -0.315933, 1.17698, 0.770547, 2.75063)
+mesh = ExtResource("6_t2d48")
+skeleton = NodePath("../..")
+
+[node name="GameTomato2" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.322723, 0, -0.609877, 0, 0.69, 0, 0.609877, 0, -0.322723, -0.751251, 0.0537963, -1.49534)
+mesh = ExtResource("6_t2d48")
+skeleton = NodePath("../..")
+
+[node name="GameBread" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(-0.0295651, 0, -0.423971, 0, 0.425, 0, 0.423971, 0, -0.0295651, -2.9414, 0.240292, -0.269871)
+mesh = ExtResource("7_dy0im")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D" groups=["bullets"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0.0704969, 1.7837, 0)
+mesh = SubResource("SphereMesh_fxtay")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Node3D" groups=["bullets"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -1.84361, 1.12853, 0.317706)
+mesh = SubResource("SphereMesh_fxtay")
+skeleton = NodePath("../..")
+
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

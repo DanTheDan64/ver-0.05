@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://cb14ba5xidrs4"]
+
+[ext_resource type="Script" path="res://enemies/foods/code/passive_food.gd" id="1_xq1mq"]
+[ext_resource type="Texture2D" uid="uid://drpekqwhiw1fh" path="res://assets/kenney_prototype_textures/green/texture_02.png" id="2_fy2aq"]
+[ext_resource type="Texture2D" uid="uid://cx558qn2b1dwm" path="res://assets/kenney_prototype_textures/light/texture_01.png" id="3_vk6md"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5w4yi"]
+albedo_texture = ExtResource("2_fy2aq")
+
+[sub_resource type="BoxMesh" id="BoxMesh_unklm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mp3k7"]
+albedo_texture = ExtResource("3_vk6md")
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1miv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wcus"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_couqs"]
+
+[node name="lettuce" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600276, 0)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_xq1mq")
+
+[node name="main_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_5w4yi")
+mesh = SubResource("BoxMesh_unklm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="main_mesh"]
+transform = Transform3D(0.0140644, 0, 0.769568, 0, 0.385, 0, -0.419764, 0, 0.0257847, 0, 0.22, -0.41417)
+material_override = SubResource("StandardMaterial3D_mp3k7")
+mesh = SubResource("BoxMesh_p1miv")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="main_mesh"]
+transform = Transform3D(0.0140644, 0, 0.769568, 0, 0.895, 0, -0.419764, 0, 0.0257847, 0, -0.0661666, 0.528157)
+visible = false
+mesh = SubResource("BoxMesh_p1miv")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4wcus")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.3, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_couqs")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="agro_timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="agro_timer" to="." method="_on_agro_timer_timeout"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://c47nigmvchtna"]
+
+[ext_resource type="Script" path="res://enemies/foods/code/melee_food.gd" id="1_khsyp"]
+[ext_resource type="PackedScene" uid="uid://5a0imji2yfws" path="res://enemies/enemy drops/cheese_drop.tscn" id="2_f18ye"]
+[ext_resource type="Texture2D" uid="uid://5i63neaue600" path="res://assets/kenney_prototype_textures/orange/texture_09.png" id="2_t4jco"]
+[ext_resource type="Texture2D" uid="uid://cojvipkam8k5t" path="res://assets/kenney_prototype_textures/light/texture_02.png" id="3_hmdd5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sfh04"]
+albedo_texture = ExtResource("2_t4jco")
+
+[sub_resource type="BoxMesh" id="BoxMesh_unklm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sbqyl"]
+albedo_texture = ExtResource("3_hmdd5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_p1miv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4wcus"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_couqs"]
+
+[node name="cheese" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_khsyp")
+node = ExtResource("2_f18ye")
+highest_speed = 1.5
+lowest_max_distance_to_pack = 10.0
+highest_max_distance_to_pack = 20.0
+lowest_panic_amount = 1.8
+highest_panic_amount = 2.4
+jump_timer = 17.0
+charge_force = 3.0
+charge_cooldown = 1.0
+
+[node name="main_mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_sfh04")
+mesh = SubResource("BoxMesh_unklm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="main_mesh"]
+transform = Transform3D(0.0140644, 0, 0.769568, 0, 0.385, 0, -0.419764, 0, 0.0257847, 0, 0.22, -0.41417)
+material_override = SubResource("StandardMaterial3D_sbqyl")
+mesh = SubResource("BoxMesh_p1miv")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_4wcus")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.5, 0, 0, 0, 1.1, 0, 0, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1.1, 0, 0, 0, 1.3, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_couqs")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="agro_timer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="agro_timer" to="." method="_on_agro_timer_timeout"]

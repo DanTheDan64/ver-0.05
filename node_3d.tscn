@@ -1,0 +1,245 @@
+[gd_scene load_steps=18 format=3 uid="uid://7knu4imabie1"]
+
+[ext_resource type="Texture2D" uid="uid://b168rl1t8f3af" path="res://assets/kenney_prototype_textures/dark/texture_08.png" id="1_55o25"]
+[ext_resource type="PackedScene" uid="uid://dgg06vifjtsnr" path="res://character/player.tscn" id="1_qtf3n"]
+[ext_resource type="PackedScene" uid="uid://dbihpwrgdte3f" path="res://terrain/test_terrain.tscn" id="2_k71hu"]
+[ext_resource type="PackedScene" uid="uid://tg5hlkd80nqg" path="res://enemies/marker.tscn" id="3_fa0qi"]
+[ext_resource type="PackedScene" uid="uid://bbd5b3v7hytn0" path="res://enemies/target.tscn" id="3_i0qcd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb212"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5qvx"]
+albedo_texture = ExtResource("1_55o25")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7qxhe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcvp4"]
+size = Vector3(1.01746, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1orn0"]
+albedo_texture = ExtResource("1_55o25")
+
+[sub_resource type="BoxMesh" id="BoxMesh_iia4n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k1tch"]
+albedo_texture = ExtResource("1_55o25")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ff6lw"]
+albedo_texture = ExtResource("1_55o25")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gs3yp"]
+albedo_texture = ExtResource("1_55o25")
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_pvexb"]
+
+[sub_resource type="Sky" id="Sky_mr5f6"]
+sky_material = SubResource("PhysicalSkyMaterial_pvexb")
+
+[sub_resource type="Environment" id="Environment_s6tvn"]
+background_mode = 2
+sky = SubResource("Sky_mr5f6")
+sdfgi_enabled = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(6.28908, -0.0747743, -3.86939, 4.14386, 0.874439, 1.26135, 6.57844, -0.479337, 2.90464, 5.78235, -0.156677, 6.65996)
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, -3.72529e-09, 0, 5.96064e-08, 1.00003, 0, -1.19209e-07, 0, 1, 0, 0.830667, -0.069755)
+shape = SubResource("BoxShape3D_eb212")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(0.999999, -8.14907e-10, -2.98023e-08, 1.04308e-07, 0.999998, 0, 0, 2.70084e-08, 1, 0.0119045, 0.829598, -0.0740193)
+material_override = SubResource("StandardMaterial3D_b5qvx")
+mesh = SubResource("BoxMesh_7qxhe")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 17.0793, 2.32547, 10.7367)
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00582457, 0.0407044, 0.0108656)
+shape = SubResource("BoxShape3D_wcvp4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0377085, 0)
+material_override = SubResource("StandardMaterial3D_1orn0")
+mesh = SubResource("BoxMesh_iia4n")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -4.20584, -0.87332, -15.1821)
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00872803, 0, 0)
+shape = SubResource("BoxShape3D_wcvp4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4"]
+transform = Transform3D(0.9999, 0.0141541, 0, -0.0141541, 0.9999, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_k1tch")
+mesh = SubResource("BoxMesh_iia4n")
+
+[node name="StaticBody3D5" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 7.90151, 0.782172, 0, -1.25148, 4.93844, -17.2672, 1.29111, -7.62715)
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00582486, 0.0407044, 0.0108659)
+shape = SubResource("BoxShape3D_wcvp4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, -4.65661e-10, 0, 0, 1, 0, 0.0377085, 1.19209e-07)
+material_override = SubResource("StandardMaterial3D_ff6lw")
+mesh = SubResource("BoxMesh_iia4n")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="."]
+transform = Transform3D(2.96435, 19.4592, 1.65217, -3.98578, 15.0906, 0.107246, -0.571132, -4.31443, 7.8268, -36.7077, 13.5796, -28.8177)
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6"]
+transform = Transform3D(1, 9.53674e-07, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_wcvp4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D6"]
+transform = Transform3D(1, 7.07805e-07, -7.45058e-09, -7.91624e-09, 0.999999, 0, -7.45058e-09, -1.19209e-07, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_gs3yp")
+mesh = SubResource("BoxMesh_iia4n")
+
+[node name="test_terrain" parent="." instance=ExtResource("2_k71hu")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.523904, -0.0678997, 0.849067, -0.0698665, 0.990033, 0.122283, -0.848907, -0.123386, 0.513938, 100, 50, 10)
+layers = 15
+light_indirect_energy = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s6tvn")
+
+[node name="player" parent="." instance=ExtResource("1_qtf3n")]
+unique_name_in_owner = true
+transform = Transform3D(0.361608, 0, 0.93233, 0, 1, 0, -0.93233, 0, 0.361608, -32.4815, 10.8596, 13.8847)
+
+[node name="target" parent="." instance=ExtResource("3_i0qcd")]
+transform = Transform3D(0.984417, 0, -0.175848, 0, 1, 0, 0.175848, 0, 0.984417, -18.1184, -1.02167, 2.8979)
+
+[node name="target2" parent="." instance=ExtResource("3_i0qcd")]
+transform = Transform3D(0.952789, 0, 0.303634, 0, 1, 0, -0.303634, 0, 0.952789, -18.0802, -1.40931, 11.6548)
+
+[node name="target3" parent="." instance=ExtResource("3_i0qcd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5213, -0.504206, 7.50833)
+
+[node name="marker" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8261, 0, -4.4557)
+
+[node name="marker2" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.02772, 0.528992, 6.08131)
+min_spawn = 3
+max_spawn = 7
+
+[node name="marker3" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.2059, 9.45957, 12.0803)
+
+[node name="marker4" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.7743, 9.45957, -0.328256)
+spawn_type = 2
+
+[node name="marker5" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35503, 22.3097, -34.8901)
+
+[node name="marker6" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.663, 22.3097, -44.0708)
+min_spawn = 2
+max_spawn = 4
+spawn_type = 3
+
+[node name="marker7" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.43587, 22.3097, -30.6564)
+min_spawn = 8
+max_spawn = 16
+spawn_type = 2
+
+[node name="marker8" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.7818, 14.4362, -36.1019)
+min_spawn = 4
+max_spawn = 6
+
+[node name="marker9" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.0366, 14.4362, -53.5952)
+spawn_type = 2
+
+[node name="marker10" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -33.6251, 9.45957, -25.1562)
+
+[node name="marker11" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -74.2866, 14.4362, -46.9178)
+min_spawn = 3
+max_spawn = 7
+spawn_type = 2
+
+[node name="marker12" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.5917, 8.99998, -71.2378)
+
+[node name="marker13" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6479, 8.99998, -92.5924)
+spawn_type = 2
+
+[node name="marker14" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187745, 8.99998, -62.3891)
+spawn_type = 2
+
+[node name="marker15" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.65108, 8.99998, -62.7063)
+spawn_type = 3
+
+[node name="marker16" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.78832, 8.99998, -96.8488)
+
+[node name="marker17" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.211, 18.0096, -99.5972)
+min_spawn = 3
+max_spawn = 6
+spawn_type = 4
+
+[node name="marker18" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.1027, 18.0096, -111.919)
+
+[node name="marker19" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -98.2617, 18.0096, -94.2881)
+spawn_type = 3
+
+[node name="marker20" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5889, -2.93257, -92.8573)
+min_spawn = 1
+max_spawn = 2
+spawn_type = 5
+
+[node name="marker21" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0695, -2.93257, -84.5405)
+min_spawn = 2
+max_spawn = 4
+spawn_type = 4
+
+[node name="marker22" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.7496, 17.637, -82.0063)
+min_spawn = 2
+max_spawn = 4
+spawn_type = 5
+
+[node name="marker23" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.5718, 17.637, -63.6759)
+min_spawn = 3
+max_spawn = 6
+spawn_type = 4
+
+[node name="marker24" parent="." instance=ExtResource("3_fa0qi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.9898, 17.637, -77.0859)
+min_spawn = 2
+max_spawn = 8
+spawn_type = 2

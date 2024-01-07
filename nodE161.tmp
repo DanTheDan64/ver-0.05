@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://7knu4imabie1"]
+
+[ext_resource type="PackedScene" uid="uid://dgg06vifjtsnr" path="res://player.tscn" id="1_2g7nv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wci2l"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8c5ru"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb212"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7qxhe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wcvp4"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iia4n"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_2g7nv")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, 0.5, 0, 0, 0, 30, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_wci2l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_8c5ru")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(8.83022, -0.321394, 1.7101, 3.4202, 0.939692, 0, -3.21394, 0.116978, 4.69847, 0, 0.558013, -7.01481)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_eb212")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+transform = Transform3D(0.999999, 5.82077e-11, 0, 0, 0.999998, 0, 1.86265e-09, 2.23517e-08, 1, 0.0119045, 0.829598, -0.0740193)
+mesh = SubResource("BoxMesh_7qxhe")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 6.37365, 2.14127, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_wcvp4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0377085, 0)
+mesh = SubResource("BoxMesh_iia4n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.96122, 15.7839, 7.12477)
+light_energy = 5.0
+light_indirect_energy = 5.0
+omni_range = 100.0
